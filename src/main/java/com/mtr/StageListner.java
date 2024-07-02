@@ -43,6 +43,7 @@ public class StageListner implements ApplicationListener<StageRedyEvent> {
 			Parent root = fxmlLoader.load();
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
+			//stage.setResizable(false);
 			stage.setTitle(this.applictionTitle);
 			stage.show();
 		}catch(IOException e) {

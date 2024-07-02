@@ -19,24 +19,20 @@ public class SnakeController {
 	private int unit_size = 25;
 	
 	public void initialize() {
-		int x = 10;
-		int pow = 2;
-		
 		Canvas canvas = new Canvas(width, height);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.setStroke(Color.GREY);
 		gc.setLineWidth(1);
 		
-		for(int i = 0; i <= width/unit_size; i ++) {
-			gc.strokeLine(i, 0, i, unit_size);
+		for(int x = 0; x < width; x += unit_size) {
+			gc.strokeLine(x, 0, x, width);
+		}
+		
+		for(int y = 0; y < height; y += unit_size) {
+			gc.strokeLine(0, y, height, y);
 		}
 		
 		this.anchorPane.getChildren().add(canvas);
 	}
 	
-	private int pow(int base, int p) {
-		if(p != 0) {
-			return pow(base  base);
-		}
-	}
 }
