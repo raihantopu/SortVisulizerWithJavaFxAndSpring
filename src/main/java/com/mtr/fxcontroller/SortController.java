@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.mtr.service.DrawingService;
@@ -22,7 +23,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.shape.Line;
 
 @Component
-public class MainController {
+public class SortController {
+	
+	@Value("${application.algorithms}")
+	private String[] algorithms;
 	@FXML
 	public Button btnDraw;
 	@FXML
@@ -54,7 +58,7 @@ public class MainController {
 
 	public void initialize() {
 		//populate choice box to choose the algorithm
-		String[] algorithms = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Merge Sort"};
+		//String[] algorithms = {"Bubble Sort", "Selection Sort", "Insertion Sort", "Merge Sort"};
 		this.choiceBox.getItems().addAll(algorithms);
 		this.choiceBox.setValue("Choose Algorithm");
 		

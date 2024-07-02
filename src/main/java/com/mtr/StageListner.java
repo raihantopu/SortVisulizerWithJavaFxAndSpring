@@ -24,8 +24,8 @@ public class StageListner implements ApplicationListener<StageRedyEvent> {
 	private final ApplicationContext ac;
 	
 	StageListner(
-			@Value("${spring.appliction.ui.title}") String applictionTitle,
-			@Value("classpath:/ui.fxml") Resource resource,
+			@Value("${appliction.ui.title}") String applictionTitle,
+			@Value("${application.ui.to.open}") Resource resource,
 			ApplicationContext ac
 			){
 		this.applictionTitle = applictionTitle;
