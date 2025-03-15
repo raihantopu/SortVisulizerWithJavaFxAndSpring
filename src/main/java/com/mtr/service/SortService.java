@@ -1,11 +1,13 @@
 package com.mtr.service;
 
-import static com.mtr.utility.Utility.currentLineColor;
-import static com.mtr.utility.Utility.iIndexColor;
+import static com.mtr.utility.Utility.CURRENT_LINE_COLOR;
+import static com.mtr.utility.Utility.I_INDEX_COLOR;
+import static com.mtr.utility.Utility.SORTED_COLOR;
+import static com.mtr.utility.Utility.INITIAL_COLOR;
 import static com.mtr.utility.Utility.sleep;
-import static com.mtr.utility.Utility.sortedColor;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -23,36 +25,75 @@ public class SortService {
 		this.drawingService = drawingService;
 	}
 	//Bubble sort
+//	public List<Line> bubbleSort(List<Line> lines, HBox hbox, int time) {
+//        int n = lines.size();
+//        for (int i = 0; i < n - 1; i++) {
+//            lines.get(i).setStroke(iIndexColor);
+//            Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
+//            sleep(time);
+//            for (int j = 0; j < n - 1 - i; j++) {
+//                lines.get(j).setStroke(currentLineColor);
+//                if (Integer.parseInt(lines.get(j).getId()) > Integer.parseInt(lines.get(j + 1).getId())) {
+//                    Line temp = lines.get(j);
+//                    lines.set(j, lines.get(j + 1));
+//                    lines.get(j + 1).setStroke(sortedColor);
+//                    lines.set(j + 1, temp);
+//                    Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
+//                    sleep(time);
+//                }
+//            }
+//        }
+//        this.drawingService.changeToSortedColor(lines, hbox);
+//        return lines;
+//    }
+	
 	public List<Line> bubbleSort(List<Line> lines, HBox hbox, int time) {
-        int n = lines.size();
-        for (int i = 0; i < n - 1; i++) {
-            lines.get(i).setStroke(iIndexColor);
-            Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
-            sleep(time);
-            for (int j = 0; j < n - 1 - i; j++) {
-                lines.get(j).setStroke(currentLineColor);
-                if (Integer.parseInt(lines.get(j).getId()) > Integer.parseInt(lines.get(j + 1).getId())) {
-                    Line temp = lines.get(j);
-                    lines.set(j, lines.get(j + 1));
-                    lines.get(j + 1).setStroke(sortedColor);
-                    lines.set(j + 1, temp);
-                    Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
-                    sleep(time);
-                }
-            }
-        }
-        this.drawingService.changeToSortedColor(lines, hbox);
-        return lines;
-    }
+	    int n = lines.size();
+	    boolean swapped;
+
+	    for (int i = 0; i < n - 1; i++) {
+	        swapped = false;
+	        lines.get(i).setStroke(I_INDEX_COLOR);
+
+	        for (int j = 0; j < n - 1 - i; j++) {
+	            lines.get(j).setStroke(CURRENT_LINE_COLOR);
+	            
+	            if (Integer.parseInt(lines.get(j).getId()) > Integer.parseInt(lines.get(j + 1).getId())) {
+	                Collections.swap(lines, j, j + 1);
+	                lines.get(j + 1).setStroke(SORTED_COLOR);
+	                swapped = true;
+	            }
+
+	            //lines.get(j).setStroke(INITIAL_COLOR);  // Reset color
+	            
+	            if (swapped && (j % 5 == 0 || j == n - 2 - i)) {  // Ensure last update in each loop
+	                Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
+	                sleep(time);
+	            }
+	        }
+	        
+	        if (swapped) {  // Ensure final redraw before exiting outer loop
+	            Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
+	            sleep(time);
+	        }
+	        lines.get(i).setStroke(INITIAL_COLOR);
+	        if (!swapped) break;  // Stop if already sorted
+	    }
+
+	   // Platform.runLater(() -> this.drawingService.changeToSortedColor(lines));  // Ensure final update
+	    return lines;
+	}
+
+
 	
 	//Selection sort
 	public List<Line> selectionSort(List<Line> lines, HBox hbox, int time) {
         int n = lines.size();
         for (int i = 0; i < n - 1; i++) {
             int minIndex = i;
-            lines.get(minIndex).setStroke(iIndexColor);
+            lines.get(minIndex).setStroke(I_INDEX_COLOR);
             for (int j = i + 1; j < n; j++) {
-                lines.get(j).setStroke(currentLineColor);
+                lines.get(j).setStroke(CURRENT_LINE_COLOR);
                 if (Integer.parseInt(lines.get(j).getId()) < Integer.parseInt(lines.get(minIndex).getId())) {
                     minIndex = j;
                 }
@@ -61,12 +102,12 @@ public class SortService {
             }
             Line temp = lines.get(i);
             lines.set(i, lines.get(minIndex));
-            lines.get(minIndex).setStroke(sortedColor);
+            lines.get(minIndex).setStroke(SORTED_COLOR);
             lines.set(minIndex, temp);
             Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
             sleep(time);
         }
-        this.drawingService.changeToSortedColor(lines, hbox);
+        this.drawingService.changeToSortedColor(lines);
         return lines;
     }
 	//Insertion sort
@@ -77,23 +118,23 @@ public class SortService {
             int j = i - 1;
             while (j >= 0 && Integer.parseInt(lines.get(j).getId()) > Integer.parseInt(line.getId())) {
                 lines.set(j + 1, lines.get(j));
-                lines.get(j).setStroke(currentLineColor);
+                lines.get(j).setStroke(CURRENT_LINE_COLOR);
                 Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
                 sleep(time);
                 j--;
             }
             lines.set(j + 1, line);
-            lines.get(j + 1).setStroke(sortedColor);
+            lines.get(j + 1).setStroke(SORTED_COLOR);
             Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
             sleep(time);
         }
-        this.drawingService.changeToSortedColor(lines, hbox);
+        this.drawingService.changeToSortedColor(lines);
         return lines;
     }
     //Quick sort
     public List<Line> quickSort(List<Line> lines, HBox hbox, int time) {
         quickSortHelper(lines, 0, lines.size() - 1, hbox, time);
-        this.drawingService.changeToSortedColor(lines, hbox);
+        this.drawingService.changeToSortedColor(lines);
         return lines;
     }
 
@@ -113,7 +154,7 @@ public class SortService {
                 i++;
                 Line temp = lines.get(i);
                 lines.set(i, lines.get(j));
-                lines.get(j).setStroke(currentLineColor);
+                lines.get(j).setStroke(CURRENT_LINE_COLOR);
                 lines.set(j, temp);
                 Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
                 sleep(time);
@@ -121,7 +162,7 @@ public class SortService {
         }
         Line temp = lines.get(i + 1);
         lines.set(i + 1, lines.get(high));
-        lines.get(high).setStroke(sortedColor);
+        lines.get(high).setStroke(SORTED_COLOR);
         lines.set(high, temp);
         Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
         sleep(time);
@@ -130,7 +171,7 @@ public class SortService {
     //Merge sort
     public List<Line> mergeSort(List<Line> lines, HBox hbox, int time) {
         mergeSortHelper(lines, 0, lines.size() - 1, hbox, time);
-        this.drawingService.changeToSortedColor(lines, hbox);
+        this.drawingService.changeToSortedColor(lines);
         return lines;
     }
 
@@ -154,11 +195,11 @@ public class SortService {
         while (i < n1 && j < n2) {
             if (Integer.parseInt(L.get(i).getId()) <= Integer.parseInt(R.get(j).getId())) {
                 lines.set(k, L.get(i));
-                L.get(i).setStroke(currentLineColor);
+                L.get(i).setStroke(CURRENT_LINE_COLOR);
                 i++;
             } else {
                 lines.set(k, R.get(j));
-                R.get(j).setStroke(currentLineColor);
+                R.get(j).setStroke(CURRENT_LINE_COLOR);
                 j++;
             }
             Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
@@ -168,7 +209,7 @@ public class SortService {
 
         while (i < n1) {
             lines.set(k, L.get(i));
-            L.get(i).setStroke(currentLineColor);
+            L.get(i).setStroke(CURRENT_LINE_COLOR);
             i++;
             k++;
             Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
@@ -177,7 +218,7 @@ public class SortService {
 
         while (j < n2) {
             lines.set(k, R.get(j));
-            R.get(j).setStroke(currentLineColor);
+            R.get(j).setStroke(CURRENT_LINE_COLOR);
             j++;
             k++;
             Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
