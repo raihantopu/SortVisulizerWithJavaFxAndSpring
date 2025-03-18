@@ -41,6 +41,7 @@ public class JavaFxDemoApplication extends Application{
 	}
 
 	
+	@SuppressWarnings("serial")
 	class StageRedyEvent extends ApplicationEvent{
 
 		public Stage getStage() {

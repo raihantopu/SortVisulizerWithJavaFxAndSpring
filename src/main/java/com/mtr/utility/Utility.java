@@ -4,10 +4,10 @@ import javafx.scene.paint.Color;
 
 public class Utility {
 	
-	public static Color initialColor = Color.BLACK;
-	public static Color currentLineColor = Color.RED;
-	public static Color sortedColor = Color.GREEN;
-	public static Color iIndexColor = Color.CYAN;
+	public static Color INITIAL_COLOR = Color.BLACK;
+	public static Color CURRENT_LINE_COLOR = Color.RED;
+	public static Color SORTED_COLOR = Color.GREEN;
+	public static Color I_INDEX_COLOR = Color.CYAN;
 	
 	public static void sleep(int milisecond) {
 		try {

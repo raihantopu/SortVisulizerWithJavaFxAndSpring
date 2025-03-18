@@ -71,7 +71,7 @@ public class SortController {
 		this.counter.setText(String.valueOf((int)this.slider.getValue()));
 		
 		//Visual Speed slider
-		this.speedSlider.setMin(10);
+		this.speedSlider.setMin(1);
 		this.speedSlider.setMax(300);
 		this.speedSlider.setValue(50);
 		this.speedSlider.setShowTickLabels(true);

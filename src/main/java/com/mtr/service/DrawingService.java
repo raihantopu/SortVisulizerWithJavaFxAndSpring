@@ -1,7 +1,7 @@
 package com.mtr.service;
 
-import static com.mtr.utility.Utility.initialColor;
-import static com.mtr.utility.Utility.sortedColor;
+import static com.mtr.utility.Utility.INITIAL_COLOR;
+import static com.mtr.utility.Utility.SORTED_COLOR;
 
 import java.util.List;
 import java.util.Random;
@@ -15,20 +15,18 @@ import javafx.scene.shape.Line;
 @Service
 public class DrawingService {
 
-	public void changeToSortedColor(List<Line> lines, HBox hbox) {
+	public void changeToSortedColor(List<Line> lines) {
         for (Line line : lines) {
-            line.setStroke(sortedColor);
+            line.setStroke(SORTED_COLOR);
         }
-        Platform.runLater(() -> reDraw(lines, hbox));
     }
 	
 	public void reDraw(List<Line> lines, HBox hbox) {
-        Platform.runLater(() -> {
-            hbox.getChildren().clear();
-            hbox.getChildren().addAll(lines);
-        });
-    }
-	
+	    Platform.runLater(() -> {
+	    	hbox.getChildren().setAll(lines); 
+	    });
+	}
+
 	public void drawLine(List<Line> lineList, HBox hbox, int size) {
 		lineList.clear();
 		for(int i = 0; i < size; i++) {
@@ -41,7 +39,7 @@ public class DrawingService {
 			verticalLine.setEndY(0);   // ending y position
 			
 			verticalLine.setId(String.valueOf(random));
-			verticalLine.setStroke(initialColor);
+			verticalLine.setStroke(INITIAL_COLOR);
 			verticalLine.setStrokeWidth(3);
 			
 			lineList.add(verticalLine);
