@@ -64,7 +64,7 @@ public class SortController {
 		
 		//Counter Slider properties
 		this.slider.setMin(1);
-		this.slider.setMax(200);
+		this.slider.setMax(150);
 		this.slider.setValue(30);
 		this.slider.setShowTickLabels(true);
 		this.slider.setShowTickMarks(true);

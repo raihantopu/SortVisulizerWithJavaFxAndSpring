@@ -8,20 +8,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="500.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mtr.fxcontroller.SortController">
+<AnchorPane prefHeight="500.0" prefWidth="1410.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mtr.fxcontroller.SortController">
    <children>
-      <HBox fx:id="hbox" alignment="BOTTOM_CENTER" fillHeight="false" layoutX="4.0" layoutY="26.0" prefHeight="353.0" prefWidth="1090.0" spacing="2.0" />
-      <Button fx:id="btnDraw" layoutX="646.0" layoutY="411.0" mnemonicParsing="false" text="Re Draw Lines" />
-      <Button fx:id="btnSort" layoutX="915.0" layoutY="411.0" mnemonicParsing="false" text="SORT" />
-      <ChoiceBox fx:id="choiceBox" layoutX="747.0" layoutY="411.0" prefWidth="150.0" />
-      <Slider fx:id="slider" layoutX="451.0" layoutY="417.0" />
-      <Label layoutX="390.0" layoutY="415.0" prefWidth="62.0" text="Line Slider" />
-      <Label fx:id="counter" layoutX="591.0" layoutY="415.0" prefHeight="18.0" prefWidth="27.0" />
-      <Slider fx:id="speedSlider" layoutX="227.0" layoutY="416.0" prefHeight="16.0" prefWidth="106.0" />
-      <Label layoutX="147.0" layoutY="415.0" text="Visual Speed" />
-      <Label fx:id="visualSpeed" layoutX="332.0" layoutY="414.0" prefHeight="18.0" prefWidth="39.0" />
-      <Separator layoutX="375.0" layoutY="411.0" orientation="VERTICAL" prefHeight="25.0" prefWidth="5.0" />
-      <Separator layoutX="627.0" layoutY="411.0" orientation="VERTICAL" prefHeight="25.0" prefWidth="5.0" />
-      <Separator layoutX="904.0" layoutY="411.0" orientation="VERTICAL" prefHeight="25.0" prefWidth="5.0" />
+      <HBox fx:id="hbox" alignment="BOTTOM_CENTER" fillHeight="false" layoutX="8.0" layoutY="31.0" prefHeight="353.0" prefWidth="1396.0" spacing="2.0" />
+      <Button fx:id="btnDraw" layoutX="804.0" layoutY="416.0" mnemonicParsing="false" text="Re Draw Lines" />
+      <Button fx:id="btnSort" layoutX="1086.0" layoutY="416.0" mnemonicParsing="false" text="SORT" />
+      <ChoiceBox fx:id="choiceBox" layoutX="918.0" layoutY="416.0" prefWidth="150.0" />
+      <Slider fx:id="slider" layoutX="610.0" layoutY="422.0" />
+      <Label layoutX="528.0" layoutY="417.0" prefHeight="26.0" prefWidth="78.0" text="Line Slider" />
+      <Label fx:id="counter" layoutX="750.0" layoutY="420.0" prefHeight="18.0" prefWidth="27.0" />
+      <Slider fx:id="speedSlider" layoutX="367.0" layoutY="421.0" prefHeight="16.0" prefWidth="106.0" />
+      <Label layoutX="287.0" layoutY="420.0" text="Visual Speed" />
+      <Label fx:id="visualSpeed" layoutX="472.0" layoutY="419.0" prefHeight="18.0" prefWidth="39.0" />
+      <Separator layoutX="515.0" layoutY="416.0" orientation="VERTICAL" prefHeight="25.0" prefWidth="5.0" />
+      <Separator layoutX="787.0" layoutY="416.0" orientation="VERTICAL" prefHeight="25.0" prefWidth="5.0" />
+      <Separator layoutX="1075.0" layoutY="416.0" orientation="VERTICAL" prefHeight="25.0" prefWidth="5.0" />
    </children>
 </AnchorPane>

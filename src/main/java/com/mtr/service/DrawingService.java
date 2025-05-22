@@ -50,7 +50,7 @@ public class DrawingService {
 			
 			verticalLine.setId(String.valueOf(random));
 			verticalLine.setStroke(INITIAL_COLOR);
-			verticalLine.setStrokeWidth(3);
+			verticalLine.setStrokeWidth(7);
 			
 			lineList.add(verticalLine);
 		}
