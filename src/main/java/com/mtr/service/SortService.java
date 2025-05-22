@@ -24,28 +24,6 @@ public class SortService {
 	public SortService(DrawingService drawingService) {
 		this.drawingService = drawingService;
 	}
-	//Bubble sort
-//	public List<Line> bubbleSort(List<Line> lines, HBox hbox, int time) {
-//        int n = lines.size();
-//        for (int i = 0; i < n - 1; i++) {
-//            lines.get(i).setStroke(iIndexColor);
-//            Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
-//            sleep(time);
-//            for (int j = 0; j < n - 1 - i; j++) {
-//                lines.get(j).setStroke(currentLineColor);
-//                if (Integer.parseInt(lines.get(j).getId()) > Integer.parseInt(lines.get(j + 1).getId())) {
-//                    Line temp = lines.get(j);
-//                    lines.set(j, lines.get(j + 1));
-//                    lines.get(j + 1).setStroke(sortedColor);
-//                    lines.set(j + 1, temp);
-//                    Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
-//                    sleep(time);
-//                }
-//            }
-//        }
-//        this.drawingService.changeToSortedColor(lines, hbox);
-//        return lines;
-//    }
 	
 	public List<Line> bubbleSort(List<Line> lines, HBox hbox, int time) {
 	    int n = lines.size();
@@ -57,15 +35,13 @@ public class SortService {
 
 	        for (int j = 0; j < n - 1 - i; j++) {
 	            lines.get(j).setStroke(CURRENT_LINE_COLOR);
-	            
+
 	            if (Integer.parseInt(lines.get(j).getId()) > Integer.parseInt(lines.get(j + 1).getId())) {
 	                Collections.swap(lines, j, j + 1);
 	                lines.get(j + 1).setStroke(SORTED_COLOR);
 	                swapped = true;
 	            }
-
 	            //lines.get(j).setStroke(INITIAL_COLOR);  // Reset color
-	            
 	            if (swapped && (j % 5 == 0 || j == n - 2 - i)) {  // Ensure last update in each loop
 	                Platform.runLater(() -> this.drawingService.reDraw(lines, hbox));
 	                sleep(time);
@@ -79,13 +55,10 @@ public class SortService {
 	        lines.get(i).setStroke(INITIAL_COLOR);
 	        if (!swapped) break;  // Stop if already sorted
 	    }
-
 	   // Platform.runLater(() -> this.drawingService.changeToSortedColor(lines));  // Ensure final update
 	    return lines;
 	}
 
-
-	
 	//Selection sort
 	public List<Line> selectionSort(List<Line> lines, HBox hbox, int time) {
         int n = lines.size();
