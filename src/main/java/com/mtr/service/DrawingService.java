@@ -35,6 +35,8 @@ public class DrawingService {
 
 	    // Only update the UI on the JavaFX thread
 	    Platform.runLater(() -> hbox.getChildren().setAll(freshLines));
+	    
+	    
 	}
 
 	public void drawLine(List<Line> lineList, HBox hbox, int size) {
@@ -44,7 +46,7 @@ public class DrawingService {
 			int random = getRandom(size);
 			// Set the start (x, y) and end (x, y) points of the line
 			verticalLine.setStartX(0); // x position of the line
-			verticalLine.setStartY(random);  // starting y position
+			verticalLine.setStartY(random + 150);  // starting y position
 			verticalLine.setEndX(0);   // x position of the line (same as startX to keep it vertical)
 			verticalLine.setEndY(0);   // ending y position
 			

@@ -1,9 +1,9 @@
 package com.mtr.service;
 
 import static com.mtr.utility.Utility.CURRENT_LINE_COLOR;
+import static com.mtr.utility.Utility.INITIAL_COLOR;
 import static com.mtr.utility.Utility.I_INDEX_COLOR;
 import static com.mtr.utility.Utility.SORTED_COLOR;
-import static com.mtr.utility.Utility.INITIAL_COLOR;
 import static com.mtr.utility.Utility.sleep;
 
 import java.util.ArrayList;
@@ -12,27 +12,28 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.mtr.StageListner;
+
 import javafx.application.Platform;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Line;
 
 @Service
 public class SortService {
-
 	private final DrawingService drawingService;
 	
-	public SortService(DrawingService drawingService) {
+	public SortService(DrawingService drawingService, StageListner stageListner) {
 		this.drawingService = drawingService;
 	}
 	
-	public List<Line> bubbleSort(List<Line> lines, HBox hbox, int time) {
+	public void bubbleSort(List<Line> lines, HBox hbox, int time) {
 	    int n = lines.size();
 	    boolean swapped;
-
+	    System.out.println("starting sort");
 	    for (int i = 0; i < n - 1; i++) {
 	        swapped = false;
 	        lines.get(i).setStroke(I_INDEX_COLOR);
-
+	        
 	        for (int j = 0; j < n - 1 - i; j++) {
 	            lines.get(j).setStroke(CURRENT_LINE_COLOR);
 
@@ -55,12 +56,10 @@ public class SortService {
 	        lines.get(i).setStroke(INITIAL_COLOR);
 	        if (!swapped) break;  // Stop if already sorted
 	    }
-	   // Platform.runLater(() -> this.drawingService.changeToSortedColor(lines));  // Ensure final update
-	    return lines;
 	}
 
 	//Selection sort
-	public List<Line> selectionSort(List<Line> lines, HBox hbox, int time) {
+	public void selectionSort(List<Line> lines, HBox hbox, int time) {
         int n = lines.size();
         for (int i = 0; i < n - 1; i++) {
             int minIndex = i;
@@ -81,10 +80,9 @@ public class SortService {
             sleep(time);
         }
         this.drawingService.changeToSortedColor(lines);
-        return lines;
     }
 	//Insertion sort
-    public List<Line> insertionSort(List<Line> lines, HBox hbox, int time) {
+    public void insertionSort(List<Line> lines, HBox hbox, int time) {
         int n = lines.size();
         for (int i = 1; i < n; i++) {
             Line line = lines.get(i);
@@ -102,13 +100,11 @@ public class SortService {
             sleep(time);
         }
         this.drawingService.changeToSortedColor(lines);
-        return lines;
     }
     //Quick sort
-    public List<Line> quickSort(List<Line> lines, HBox hbox, int time) {
+    public void quickSort(List<Line> lines, HBox hbox, int time) {
         quickSortHelper(lines, 0, lines.size() - 1, hbox, time);
         this.drawingService.changeToSortedColor(lines);
-        return lines;
     }
 
     private void quickSortHelper(List<Line> lines, int low, int high, HBox hbox, int time) {

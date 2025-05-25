@@ -19,7 +19,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
 @Component
@@ -31,18 +33,16 @@ public class SortController {
 	public Button btnDraw;
 	@FXML
 	public Button btnSort;
-	
+	@FXML
+	public AnchorPane anchorPane;
 	@FXML
 	public HBox hbox;
-	
 	@FXML
 	public ChoiceBox<String> choiceBox;
-	
 	@FXML
 	public Slider slider;
 	@FXML
 	public Slider speedSlider;
-	
 	@FXML
 	public Label counter;
 	@FXML
@@ -77,7 +77,7 @@ public class SortController {
 		this.speedSlider.setShowTickLabels(true);
 		this.speedSlider.setShowTickMarks(true);
 		visualSpeed.setText(String.valueOf((int) speedSlider.getValue()) + "ms");
-		
+
 		//initially draw default line with default size
 		drawingService.drawLine(lineList, hbox, (int) this.slider.getValue());
 		
